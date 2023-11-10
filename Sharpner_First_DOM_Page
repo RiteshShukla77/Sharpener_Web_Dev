@@ -59,7 +59,10 @@
           name.value='';
           email.value='';
         }
-
+ }
+    </script>
+  </body>
+</html>
 
 CSS File Starts Here:
 
@@ -142,7 +145,4 @@ header {
   margin: 5px;
 }
 
-      }
-    </script>
-  </body>
-</html>
+     
