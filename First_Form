@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<style>
+  <link rel="StyleSheet" href="style.css" type="text/css">
+</style>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <div class="container">
+  <form style="border: 2px solid black; background-color:grey; width:650px; height:400px; text-align:center" onsubmit="printInput(event)">
+    
+      <h3 style="text-align:center;">Book a call</h3>
+      <p style="text-align:center;">Book a call slot and our representative will call you within 1hrs of selected time</p>
+    <label for="fname" >First name:</label><br>
+    <input type="text" id="fname" name="fname" style="width: 600px;"><br>
+    <label for="Email">Email:</label><br>
+    <input type="email" id="Email" name="Email" style="width: 600px;"><br>
+    <label for="Phone">Phone:</label><br>
+    <input type="number" id="Phone" name="Phone" style="width: 600px;"><br>
+    <label>Select Time</label><br>
+    <input type="date" style="width: 298px;">
+    <input type="time" style="width: 298px;"><br>
+    <br>
+    <input type="submit" value="Get a call" style="width:600px; background: orange; color:white" >
+  </form>
+
+  </div>
+  <script>
+
+    function printInput(event){
+      event.preventDefault();
+      const name = document.getElementById('fname').value;
+      const email = document.getElementById('Email').value;
+      const phone = document.getElementById('Phone').value;
+      console.log(name);
+      console.log(email);
+      console.log(phone);
+    }
+  </script>
+
+  <!--
+  This script places a badge on your repl's full-browser view back to your repl's cover
+  page. Try various colors for the theme: dark, light, red, orange, yellow, lime, green,
+  teal, blue, blurple, magenta, pink!
+  -->
+  <script src="https://replit.com/public/js/replit-badge-v2.js" theme="dark" position="bottom-right"></script>
+</body>
+
+</html>
