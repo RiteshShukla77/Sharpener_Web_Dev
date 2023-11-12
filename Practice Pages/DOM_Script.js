@@ -9,3 +9,9 @@ for (var i=0; i<item.length; i++){
 item[i].style.fontWeight="bold";
 item[i].style.color="red";
 }
+var dummy_item = document.getElementsByClassName('Sharpener-Demo');
+dummy_item[0].style.fontWeight="bold";
+dummy_item[0].style.color="red";
+
+var dummy_item2 = document.getElementsByTagName('li');
+dummy_item2[4].style.color="Yellow";
