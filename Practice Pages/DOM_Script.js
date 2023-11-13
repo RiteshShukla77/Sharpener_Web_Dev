@@ -1,53 +1,71 @@
-// //var head = document.getElementsById('header-title');
-// var main = document.getElementById("main-header");
-// main.style.borderBottom = 'solid 3px #000';
-// var item = document.getElementsByClassName('list-group-item');
-// item[2].style.fontWeight= 'bold';
-// item[2].style.backgroundColor= 'green';
-// //console.log(document.getElementsByClassName('list-group'));
-// for (var i=0; i<item.length; i++){
-// item[i].style.fontWeight="bold";
-// item[i].style.color="red";
-// var dummy_item = document.getElementsByClassName('Sharpener-Demo');
-// dummy_item[0].style.fontWeight="bold";
-// dummy_item[0].style.color="red";
+var form = document.getElementById('addForm');
+var itemList = document.getElementById('items');
+var filter = document.getElementById('filter');
 
-//var dummy_item2 = document.getElementsByTagName('li');
-//dummy_item2[4].style.color="Yellow";
+// Form submit event
+form.addEventListener('submit', addItem);
+// Delete event
+itemList.addEventListener('click', removeItem);
+// Filter event
+filter.addEventListener('keyup', filterItems);
 
-// var item = document.querySelector(".list-group-item:nth-child(2)");
-// item.style.backgroundColor= "green";
+// Add item
+function addItem(e){
+  e.preventDefault();
 
-// var item = document.querySelectorAll(".list-group-item");
-// item[1].style.backgroundColor= "green";
-// item[2].style.color= "white";
-// //item[2].style.backgroundColor= "green";
-var item = document.querySelector("#items");
-console.log(item.firstChild);
-console.log(item.firstElementChild);
-console.log(item.lastChild);
-console.log(item.lastElementChild);
-console.log(item.parentElement);
-console.log(item.nextSibling);
-console.log(item.nextElementSibling);//added span to test
-console.log(item.previousSibling);
-console.log(item.previousElementSibling);
-var newdev=document.createElement('div');
-newdev.setAttribute('class','newdev');
-newdev.id="newdev";
-var tex=document.createTextNode("HelloWorld");
-newdev.appendChild(tex);
-console.log(newdev);
-var head=document.querySelector(".container");
+  // Get input value
+  var newItem = document.getElementById('item').value;
 
-head.insertBefore(newdev,document.querySelector("#header-title"));
+  // Create new li element
+  var li = document.createElement('li');
+  // Add class
+  li.className = 'list-group-item';
+  // Add text node with input value
+  li.appendChild(document.createTextNode(newItem));
 
-var items = document.querySelector("#items");
- var newli = document.createElement("li");
- newli.className="list-group-item";
- var newtext = document.createTextNode("Item 0");
- newli.appendChild(newtext);
- console.log(newli);
- var li1 = document.querySelector(".list-group-item:nth-child(1)");
- console.log(li1);
- items.insertBefore(newli,li1);
+  // Create del button element
+  var deleteBtn = document.createElement('button');
+  var edit = document.createElement('button');
+
+  // Add classes to del button
+  deleteBtn.className = 'btn btn-danger btn-sm float-right delete';
+  edit.className="Edit";
+
+  // Append text node
+  deleteBtn.appendChild(document.createTextNode('X'));
+  edit.appendChild(document.createTextNode('Edit'));
+
+  // Append button to li
+  li.appendChild(deleteBtn);
+  li.appendChild(edit);
+
+  // Append li to list
+  itemList.appendChild(li);
+}
+
+// Remove item
+function removeItem(e){
+  if(e.target.classList.contains('delete')){
+    if(confirm('Are You Sure?')){
+      var li = e.target.parentElement;
+      itemList.removeChild(li);
+    }
+  }
+}
+
+// Filter Items
+function filterItems(e){
+  // convert text to lowercase
+  var text = e.target.value.toLowerCase();
+  // Get lis
+  var items = itemList.getElementsByTagName('li');
+  // Convert to an array
+  Array.from(items).forEach(function(item){
+    var itemName = item.firstChild.textContent;
+    if(itemName.toLowerCase().indexOf(text) != -1){
+      item.style.display = 'block';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+}
